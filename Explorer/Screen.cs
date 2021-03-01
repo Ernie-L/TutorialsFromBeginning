@@ -29,6 +29,12 @@ namespace Explorer
             return keyPressed.KeyChar;
         }
 
+        /// <summary>
+        /// Writes the input char to the Console coordinates.
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public static void WriteAt(char s, int x, int y)
         {
             int originalX = Console.CursorLeft;
@@ -57,6 +63,11 @@ namespace Explorer
             Console.Clear();
         }
 
+        /// <summary>
+        /// Moves the Console cursor to input coordinates. The next Console write will begin from those coordinates.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public static void SetCursorPosition(int x, int y)
         {
             Console.SetCursorPosition(x, y);

@@ -6,7 +6,7 @@ namespace Explorer
 {
     public class Player
     {
-        public char Display { get; } = 'P';
+        public char Display { get; }
 
         private Map _map;
 
@@ -18,6 +18,8 @@ namespace Explorer
             _map = map;
             X = x;
             Y = y;
+
+            Display = 'P';
         }
 
         public void Draw()
