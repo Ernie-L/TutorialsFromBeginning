@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrawingWithArrays", "ConsoleNumberApp\DrawingWithArrays.csproj", "{D052BC73-613B-49C8-BCEA-B2E9F4D8DDD1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Battleship", "Battleship\Battleship.csproj", "{E16D8933-42A3-4F29-9D86-6762EC79B44F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Explorer", "Explorer\Explorer.csproj", "{3383D8F8-3B6A-4154-B908-3B7E186E7AD8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{D052BC73-613B-49C8-BCEA-B2E9F4D8DDD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D052BC73-613B-49C8-BCEA-B2E9F4D8DDD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D052BC73-613B-49C8-BCEA-B2E9F4D8DDD1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E16D8933-42A3-4F29-9D86-6762EC79B44F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E16D8933-42A3-4F29-9D86-6762EC79B44F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E16D8933-42A3-4F29-9D86-6762EC79B44F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E16D8933-42A3-4F29-9D86-6762EC79B44F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3383D8F8-3B6A-4154-B908-3B7E186E7AD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3383D8F8-3B6A-4154-B908-3B7E186E7AD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3383D8F8-3B6A-4154-B908-3B7E186E7AD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3383D8F8-3B6A-4154-B908-3B7E186E7AD8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

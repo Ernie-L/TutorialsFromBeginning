@@ -8,6 +8,12 @@ namespace Battleship
         {
             Console.WriteLine("Hello World!");
 
+            Screen.Clear();
+
+            Board board = new Board();
+            board.Draw(0,0);
+
+
             // Create a board
 
             // pick where ships go
@@ -42,34 +48,32 @@ namespace Battleship
             //Array.ForEach(Squares, c => c=' ');
         }
 
-        public void Draw()
+        public void Draw(int xTop, int yTop)
         {
+            for (int x = 0; x < Width; x++)
+            {
+                for (int y = 0; y < Height; y++)
+                {
+                    Screen.WriteAt(x.ToString(), xTop, yTop);
+                }
+            }
+        }
+
+        protected void DrawSquares(int xTop, int yTop)
+        {
+            for (int x = 0; x < Width; x++)
+            {
+                for (int y = 0; y < Height; y++)
+                {
+                    Screen.WriteAt(Squares[x, y], xTop + x, yTop + y);
+                }
+            }
 
         }
 
         public void Set(int x, int y, char value)
         {
 
-        }
-    }
-
-    public static class Utility
-    {
-        public static Char GetKeyPress(String msg, Char[] validChars)
-        {
-            ConsoleKeyInfo keyPressed;
-            bool valid = false;
-
-            Console.WriteLine();
-            do
-            {
-                Console.Write(msg);
-                keyPressed = Console.ReadKey();
-                Console.WriteLine();
-                if (Array.Exists(validChars, ch => ch.Equals(Char.ToUpper(keyPressed.KeyChar))))
-                    valid = true;
-            } while (!valid);
-            return keyPressed.KeyChar;
         }
     }
 }
