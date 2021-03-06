@@ -13,20 +13,23 @@ namespace Explorer
         /// </summary>
         /// <param name="validChars">Array of valid characters</param>
         /// <returns>Character that was pressed</returns>
-        public static Char GetKeyPress(Char[] validChars)
+        public static Char GetKeyPress(char[] validChars)
         {
-            ConsoleKeyInfo keyPressed;
+            char keyPressed;
             bool valid = false;
 
             do
             {
-                keyPressed = Console.ReadKey();
-                if (Array.Exists(validChars, ch => ch.Equals(Char.ToUpper(keyPressed.KeyChar))))
+                keyPressed = Console.ReadKey().KeyChar;
+                char keyUpper = char.ToUpper(keyPressed);
+
+                for (int i = 0; i < validChars.Length; i++)
                 {
-                    valid = true;
+                    if ( keyUpper == validChars[i])
+                        valid = true;
                 }
             } while (!valid);
-            return keyPressed.KeyChar;
+            return keyPressed;
         }
 
         /// <summary>
@@ -50,7 +53,7 @@ namespace Explorer
                 Console.Clear();
                 Console.WriteLine(e.Message);
 
-                throw new Exception($"Writing to the console at {x},{y} failed.", e);
+                throw new Exception($"Writing to the console at {x},{y} was out of range and failed.", e);
             }
             finally
             {
