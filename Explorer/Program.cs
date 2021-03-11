@@ -6,19 +6,16 @@ namespace Explorer
     {
         static void Main(string[] args)
         {
-            //// Goal: 1. Abstract class of Square with different concrete 
-            ///           classes like land and water.
-            ///        2. Have the map store arrays of squares.
-            ///        3. Have the player move around the new map.
-            ///             3a. Given the new map: have the player limit movement to only "Passable" squares.
-            ///        
-            //// Quiz: Add a new type of square... without changing code outside the Map.cs file.
+            /////////////////////////
+            /// Object design:
+            /// The map contains squares and "knows" how to draw its squares
+            /// THe player knows how to move around the map.
+            /// The map does NOT "know about" the player.
 
             Map map = new Map();
-            map.Draw();
 
-            Player player = new Player(map, 4, 5);
-            player.Draw();
+            Player player = new Player(map.Squares[0, 0]);
+            map.Draw();
 
             bool play = true;
 
@@ -37,19 +34,19 @@ namespace Explorer
                 }
                 else if ('W' == keyUpper)
                 {
-                    player.Up();
+                    player.Move(Direction.Up);
                 }
                 else if ('A' == keyUpper)
                 {
-                    player.Left();
+                    player.Move(Direction.Left);
                 }
                 else if ('S' == keyUpper)
                 {
-                    player.Down();
+                    player.Move(Direction.Down);
                 }
                 else if ('D' == keyUpper)
                 {
-                    player.Right();
+                    player.Move(Direction.Right);
                 }
             }
         }
