@@ -4,8 +4,6 @@ using System.Text;
 
 namespace Explorer
 {
-    //// Given the new map: have the player limit movement to only "Passable" squares.
-
     public class Player
     {
         public char Display { get; }
