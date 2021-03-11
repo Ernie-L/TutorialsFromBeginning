@@ -4,6 +4,13 @@ using System.Text;
 
 namespace Explorer
 {
+    //// Goal: 1. Abstract class of Square with different concrete 
+    ///           classes like land and water.
+    ///        2. Have the map store arrays of squares.
+    ///        3. Have the player move around the new map.
+    ///        
+    //// Quiz: Add a new type of square... without changing code outside the Map.cs file.
+
     public class Map
     {
         public Square[,] Squares { get; }
@@ -17,9 +24,17 @@ namespace Explorer
             {
                 for (int y = 0; y < Height; y++)
                 {
-                    Squares[x, y] = new Square();
+                    Squares[x, y] = new LandSquare();
                 }
-            }                
+            }
+
+            for (int x = 15; x < Width; x++)
+            {
+                for (int y = 14; y < Height; y++)
+                {
+                    Squares[x, y] = new WaterSquare();
+                }
+            }
         }
 
         public void Draw()
@@ -36,7 +51,7 @@ namespace Explorer
             }
 
             // have the next output print under the map.
-            Screen.SetCursorPosition(0, Height + 2);            
+            Screen.SetCursorPosition(0, Height + 2);
         }
 
         public void Draw(int x, int y)
@@ -46,8 +61,24 @@ namespace Explorer
         }
     }
 
-    public class Square
+    public abstract class Square
     {
-        public char Display { get; } = '.';
+        public virtual char Display { get; }
+        public virtual string Name { get; }
+        public virtual bool Passable { get; }
+    }
+
+    public class LandSquare : Square
+    {
+        public override char Display { get { return '.'; } }
+        public override string Name { get { return "Land"; } }
+        public override bool Passable { get { return true; } }
+    }
+
+    public class WaterSquare : Square
+    {
+        public override char Display { get { return '~'; } }
+        public override string Name { get { return "Water"; } }
+        public override bool Passable { get { return false; } }
     }
 }

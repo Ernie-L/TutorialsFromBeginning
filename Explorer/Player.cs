@@ -4,6 +4,8 @@ using System.Text;
 
 namespace Explorer
 {
+    //// Given the new map: have the player limit movement to only "Passable" squares.
+
     public class Player
     {
         public char Display { get; }
@@ -29,30 +31,43 @@ namespace Explorer
 
         public void Up()
         {
-            _map.Draw(X, Y);
-            Y--;
-            Draw();
+            // what's unsafe about this if?
+            if(_map.Squares[X, Y - 1].Passable)
+            {
+                _map.Draw(X, Y);
+                Y--;
+                Draw();
+            }
         }
 
         public void Down()
         {
-            _map.Draw(X, Y);
-            Y++;
-            Draw(); 
+            if (_map.Squares[X, Y + 1].Passable)
+            {
+                _map.Draw(X, Y);
+                Y++;
+                Draw();
+            }
         }
 
         public void Right()
         {
-            _map.Draw(X,Y);
-            X++;
-            Draw();
+            if (_map.Squares[X + 1, Y].Passable)
+            {
+                _map.Draw(X,Y);
+                X++;
+                Draw();
+            }
         }
 
         public void Left()
         {
-            _map.Draw(X, Y);
-            X--;
-            Draw();
+            if (_map.Squares[X - 1, Y].Passable)
+            {
+                _map.Draw(X, Y);
+                X--;
+                Draw();
+            }
         }
     }
 }
