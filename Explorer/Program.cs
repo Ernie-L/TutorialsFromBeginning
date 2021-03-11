@@ -6,11 +6,12 @@ namespace Explorer
     {
         static void Main(string[] args)
         {
-            /////////////////////////
-            /// Object design:
-            /// The map contains squares and "knows" how to draw its squares
-            /// THe player knows how to move around the map.
-            /// The map does NOT "know about" the player.
+            //// Goal: 1. Abstract class of Square with different concrete 
+            ///           classes like land and water.
+            ///        2. Have the map store arrays of squares.
+            ///        3. Have the player move around the new map.
+            ///        
+            //// Quiz: Add a new type of square... without changing code outside the Map.cs file.
 
             Map map = new Map();
             map.Draw();
