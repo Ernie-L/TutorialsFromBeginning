@@ -10,6 +10,7 @@ namespace Explorer
             ///           classes like land and water.
             ///        2. Have the map store arrays of squares.
             ///        3. Have the player move around the new map.
+            ///             3a. Given the new map: have the player limit movement to only "Passable" squares.
             ///        
             //// Quiz: Add a new type of square... without changing code outside the Map.cs file.
 
