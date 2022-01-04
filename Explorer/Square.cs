@@ -7,6 +7,7 @@ namespace Explorer
         public virtual char Display { get; }
         public virtual string Name { get; }
         public virtual bool Passable { get; }
+
         public Player Player { get; set; }
 
         public Square Right { get; set; }
@@ -22,6 +23,22 @@ namespace Explorer
             X = x;
             Y = y;
         }
+
+        public void EnterSquare(Player player)
+        {
+            if (!Passable)
+                throw new Exception("Can't move there!");
+
+            Player = player;
+            Draw();
+        }
+
+        public void LeaveSquare()
+        {
+            Player = null;
+            Draw();
+        }
+
 
         public void Draw()
         {
@@ -59,7 +76,7 @@ namespace Explorer
 
     public class LandSquare : Square
     {
-        public override char Display { get { return '.'; } }
+        public override char Display { get { return 'L'; } }
         public override string Name { get { return "Land"; } }
         public override bool Passable { get { return true; } }
 
@@ -68,7 +85,7 @@ namespace Explorer
 
     public class WaterSquare : Square
     {
-        public override char Display { get { return '~'; } }
+        public override char Display { get { return 'W'; } }
         public override string Name { get { return "Water"; } }
         public override bool Passable { get { return false; } }
 

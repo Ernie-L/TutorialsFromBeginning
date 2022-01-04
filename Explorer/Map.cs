@@ -24,9 +24,16 @@ namespace Explorer
             }
 
             // add some sea
-            for (int x = 15; x < Width; x++)
+            for (int x = 0; x < Width; x++)
             {
-                for (int y = 14; y < Height; y++)
+                for (int y = 10; y < Height; y++)
+                {
+                    Squares[x, y] = new WaterSquare(x, y);
+                }
+            }
+            for (int x = 5; x < Width; x++)
+            {
+                for (int y = 2; y < Height; y++)
                 {
                     Squares[x, y] = new WaterSquare(x, y);
                 }

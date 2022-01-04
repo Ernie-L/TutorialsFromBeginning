@@ -8,26 +8,26 @@ namespace Explorer
     {
         public char Display { get; }
 
-        private Square _square;
+        private Square _currentSquare;
 
         public Player(Square square)
         {
-            _square = square;
-            Display = 'P';
+            Display = 'O';
+
+            _currentSquare = square;
+            _currentSquare.EnterSquare(this);
         }
 
         public void Move(Direction direction)
         {
-            Square destination = _square.Check(direction);
+            Square destination = _currentSquare.Check(direction);
 
             if (destination != null)
             {
-                _square.Player = null;
-                _square.Draw();
-
-                _square = destination;
-                _square.Player = this;
-                _square.Draw();
+                _currentSquare.LeaveSquare();
+               
+                _currentSquare = destination;
+                _currentSquare.EnterSquare(this);
             }
         }
     }
