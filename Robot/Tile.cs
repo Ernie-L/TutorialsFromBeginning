@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace Robot
 {
-    internal class Tiles
+    internal class Tile
     {
+        public static class config
+        {
+            public static readonly int Width = 8;
+            public static readonly int Height = 5;
+        };
+
         public static class Robot
         {
             public static string Up = @" ______ " + "\n" +
