@@ -8,7 +8,13 @@ namespace Explorer
         public virtual string Name { get; }
         public virtual bool Passable { get; }
 
-        public Player Player { get; set; }
+        private Player _player;
+
+        public Player Player
+        {
+            get { return _player; }
+            set { _player = value; Draw(); }
+        }
 
         public Square Right { get; set; }
         public Square Left { get; set; }
@@ -28,17 +34,19 @@ namespace Explorer
         {
             if (!Passable)
                 throw new Exception("Can't move there!");
+            if (Player != null)
+                throw new Exception("Already a player in the square.");
 
             Player = player;
-            Draw();
         }
 
-        public void LeaveSquare()
+        public void LeaveSquare(Player player)
         {
-            Player = null;
-            Draw();
-        }
+            if (Player != player)
+                throw new Exception("Player can't leave the square bucause they aren't in the square.");
 
+            Player = null;
+        }
 
         public void Draw()
         {
@@ -52,25 +60,18 @@ namespace Explorer
             Screen.WriteAt(display, X, Y);
         }
 
-        public virtual Square Check(Direction direction)
+        public virtual Square Neighbor(Direction direction)
         {
-            Square destination;
+            Square neighbor;
 
-            if (direction == Direction.Up) destination = Up;
-            else if (direction == Direction.Down) destination = Down;
-            else if (direction == Direction.Left) destination = Left;
-            else if (direction == Direction.Right) destination = Right;
-            else throw new Exception("Don't know where to move.");
+            if (direction == Direction.Up) neighbor = Up;
+            else if (direction == Direction.Down) neighbor = Down;
+            else if (direction == Direction.Left) neighbor = Left;
+            else if (direction == Direction.Right) neighbor = Right;
+            else 
+                throw new Exception("Don't know where to move.");
 
-            if (destination != null)        // not off the end of the map
-            {
-                if (destination.Passable)
-                {
-                    return destination;     // move to new square.
-                }
-            }
-
-            return null;    // stay on this square
+            return neighbor;    // can be null if off the map.
         }
     }
 
