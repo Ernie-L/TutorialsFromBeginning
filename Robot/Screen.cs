@@ -29,6 +29,10 @@ namespace Robot
                     if (keyUpper == validChars[i])
                         valid = true;
                 }
+
+                if (!valid)
+                    Thread.Sleep(5);
+
             } while (!valid);
             return keyPressed;
         }
