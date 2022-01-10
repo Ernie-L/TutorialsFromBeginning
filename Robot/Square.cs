@@ -4,7 +4,7 @@ namespace Robot
 {
     public abstract class Square
     {
-        public virtual char Display { get; }
+        public virtual string[] Display { get; }
         public virtual string Name { get; }
         public virtual bool Passable { get; }
 
@@ -50,14 +50,26 @@ namespace Robot
 
         public void Draw()
         {
-            char display;
+            // TODO: Draw the player
 
-            if (Player != null)
-                display = Player.Display;
-            else
-                display = Display;
+            int startingX = X * Tile.config.Width;
+            int startingY = Y * Tile.config.Height;
 
-            Screen.WriteAt(display, X, Y);
+            if (Display.Length != Tile.config.Height)
+                throw new Exception($"Title must be {Tile.config.Height} high.");
+
+            for (int y=0; y<Tile.config.Height; y++)
+            {
+                if (Display[y].Length < Tile.config.Width)
+                    throw new Exception($"Tile must be at least 5 {Tile.config.Width} wide.");
+
+                for (int x=0; x<Tile.config.Width; x++)
+                {
+                    Screen.WriteAt(Display[y][x], startingX + x , startingY + y);
+                }
+            }
+
+            //Screen.SetCursorPosition(0, Tile.config.Height + 2);
         }
 
         public virtual Square Neighbor(Direction direction)
@@ -77,7 +89,7 @@ namespace Robot
 
     public class LandSquare : Square
     {
-        public override char Display { get { return 'L'; } }
+        public override string[] Display { get { return Tile.Grass; } }
         public override string Name { get { return "Land"; } }
         public override bool Passable { get { return true; } }
 
@@ -86,7 +98,7 @@ namespace Robot
 
     public class WaterSquare : Square
     {
-        public override char Display { get { return 'W'; } }
+        public override string[] Display { get { return Tile.Water; } }
         public override string Name { get { return "Water"; } }
         public override bool Passable { get { return false; } }
 

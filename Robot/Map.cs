@@ -7,8 +7,8 @@ namespace Robot
     public class Map
     {
         public Square[,] Squares { get; }
-        public const int Width = 20;
-        public const int Height = 20;
+        public const int Width = 10;
+        public const int Height = 5;
 
         public Map()
         {
@@ -23,21 +23,21 @@ namespace Robot
                 }
             }
 
-            // add some sea
-            for (int x = 0; x < Width; x++)
+            //// add some sea
+            for (int x = 4; x < Width; x++)
             {
-                for (int y = 10; y < Height; y++)
+                for (int y = 3; y < Height; y++)
                 {
                     Squares[x, y] = new WaterSquare(x, y);
                 }
             }
-            for (int x = 5; x < Width; x++)
-            {
-                for (int y = 2; y < Height; y++)
-                {
-                    Squares[x, y] = new WaterSquare(x, y);
-                }
-            }
+            //for (int x = 5; x < Width; x++)
+            //{
+            //    for (int y = 2; y < Height; y++)
+            //    {
+            //        Squares[x, y] = new WaterSquare(x, y);
+            //    }
+            //}
 
             LinkSquares();
         }
@@ -64,20 +64,23 @@ namespace Robot
             {
                 for (int y = 0; y < Height; y++)
                 {
-                    char display;
                     Square square = Squares[x, y];
+                    square.Draw();
 
-                    if (square.Player != null)
-                        display = square.Player.Display;
-                    else
-                        display = square.Display;
+                    //char display;
+                    //Square square = Squares[x, y];
 
-                    Screen.WriteAt(display, x, y);
+                    //if (square.Player != null)
+                    //    display = square.Player.Display;
+                    //else
+                    //    display = square.Display;
+
+                    //Screen.WriteAt(display, x, y);
                 }
             }
 
             // have the next output print under the map.
-            Screen.SetCursorPosition(0, Height + 2);
+            Screen.SetCursorPosition(0, (Height * Tile.config.Height) + 2 );
         }
     }
 }

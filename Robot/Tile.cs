@@ -10,8 +10,8 @@ namespace Robot
     {
         public static class config
         {
-            public static readonly int Width = 8;
-            public static readonly int Height = 5;
+            public const int Width = 8;
+            public const int Height = 5;
         };
 
         public static class Robot
@@ -22,11 +22,20 @@ namespace Robot
                                       @"|      |" + "\n" +
                                       @"\______/";
 
-            public static string Right = @" ______ " + "\n" +
-                                         @"/  |   \" + "\n" +
-                                         @"|  |  <|" + "\n" +
-                                         @"|  |  <|" + "\n" +
-                                         @"\__|___/";
+            public static string[] Up2 = new string[config.Height]
+                                    { @" ______ " + "\n",
+                                      @"/ v  v \" + "\n",
+                                      @"|------|" + "\n",
+                                      @"|      |" + "\n",
+                                      @"\______/"};
+
+
+            public static string[] Right = new string[config.Height]
+                                      { @" ______ " + "\n" ,
+                                        @"/  |   \" + "\n",
+                                        @"|  |  <|" + "\n",
+                                        @"|  |  <|" + "\n",
+                                        @"\__|___/" };
 
             public static string Left = @" ______ " + "\n" +
                                         @"/   |  \" + "\n" +
@@ -41,17 +50,19 @@ namespace Robot
                                         @"\_^__^_/";
         }
 
-        public static string Grass = @"/\|\/|/|" + "\n" +
-                                     @"\|/\/|/\" + "\n" +
-                                     @"|/\|/|\/" + "\n" +
-                                     @"\/|//\|\" + "\n" +
-                                     @"\\/|\//\";
+        public static string[] Grass = new string[config.Height]
+                                    { @"/\|\/|/|" + "\n",
+                                      @"\|/\/|/\" + "\n",
+                                      @"|/\|/|\/" + "\n",
+                                      @"\/|//\|\" + "\n",
+                                      @"\\/|\//\" };
 
-        public static string Water = @"~/~~/~~~" + "\n" +
-                                     @"~~/~~~~~" + "\n" +
-                                     @"~/~~~~~/" + "\n" +
-                                     @"/~~/~~/~" + "\n" +
-                                     @"~/~~/~~~";
+        public static string[] Water = new string[config.Height]
+                                    {@"~/~~/~~~" + "\n",
+                                     @"~~/~~~~~" + "\n",
+                                     @"~/~~~~~/" + "\n",
+                                     @"/~~/~~/~" + "\n",
+                                     @"~/~~/~~~" };
 
         public static class Door
         {
