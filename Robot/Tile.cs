@@ -16,73 +16,72 @@ namespace Robot
 
         public static class Robot
         {
-            public static string Up = @" ______ " + "\n" +
-                                      @"/ v  v \" + "\n" +
-                                      @"|------|" + "\n" +
-                                      @"|      |" + "\n" +
-                                      @"\______/";
-
-            public static string[] Up2 = new string[config.Height]
-                                    { @" ______ " + "\n",
-                                      @"/ v  v \" + "\n",
-                                      @"|------|" + "\n",
-                                      @"|      |" + "\n",
+            public static string[] Up = new string[config.Height]
+                                    { @" ______ ",
+                                      @"/ v  v \",
+                                      @"|------|",
+                                      @"|      |",
                                       @"\______/"};
 
 
             public static string[] Right = new string[config.Height]
-                                      { @" ______ " + "\n" ,
-                                        @"/  |   \" + "\n",
-                                        @"|  |  <|" + "\n",
-                                        @"|  |  <|" + "\n",
+                                      { @" ______ ",
+                                        @"/  |   \",
+                                        @"|  |  <|",
+                                        @"|  |  <|",
                                         @"\__|___/" };
 
-            public static string Left = @" ______ " + "\n" +
-                                        @"/   |  \" + "\n" +
-                                        @"|>  |  |" + "\n" +
-                                        @"|>  |  |" + "\n" +
-                                        @"\___|__/";
+            public static string[] Left = new string[config.Height]
+                                      { @" ______ ",
+                                        @"/   |  \",
+                                        @"|>  |  |",
+                                        @"|>  |  |",
+                                        @"\___|__/" };
 
-            public static string Down = @" ______ " + "\n" +
-                                        @"/      \" + "\n" +
-                                        @"|      |" + "\n" +
-                                        @"|------|" + "\n" +
-                                        @"\_^__^_/";
+            public static string[] Down = new string[config.Height]
+                                      { @" ______ ",
+                                        @"/      \",
+                                        @"|      |",
+                                        @"|------|",
+                                        @"\_^__^_/" };
         }
 
         public static string[] Grass = new string[config.Height]
-                                    { @"/\|\/|/|" + "\n",
-                                      @"\|/\/|/\" + "\n",
-                                      @"|/\|/|\/" + "\n",
-                                      @"\/|//\|\" + "\n",
+                                    { @"/\|\/|/|",
+                                      @"\|/\/|/\",
+                                      @"|/\|/|\/",
+                                      @"\/|//\|\",
                                       @"\\/|\//\" };
 
         public static string[] Water = new string[config.Height]
-                                    {@"~/~~/~~~" + "\n",
-                                     @"~~/~~~~~" + "\n",
-                                     @"~/~~~~~/" + "\n",
-                                     @"/~~/~~/~" + "\n",
+                                    {@"~/~~/~~~",
+                                     @"~~/~~~~~",
+                                     @"~/~~~~~/",
+                                     @"/~~/~~/~",
                                      @"~/~~/~~~" };
 
         public static class Door
         {
-            public static string Closed = @"        " + "\n" +
-                                          @"  ____  " + "\n" +
-                                          @" / || \ " + "\n" +
-                                          @"| O||O |" + "\n" +
-                                          @" \_||_/ ";
+            public static string[] Closed = new string[config.Height]
+                                        { @"        ",
+                                          @"  ____  ",
+                                          @" / || \ ",
+                                          @"| O||O |",
+                                          @" \_||_/ " };
 
-            public static string Partial = @"        " + "\n" +
-                                           @"  ____  " + "\n" +
-                                           @" /|  |\ " + "\n" +
-                                           @"|O|  |O|" + "\n" +
-                                           @" \|__|/ ";
+            public static string[] Partial = new string[config.Height]
+                                        {  @"        ",
+                                           @"  ____  ",
+                                           @" /|  |\ ",
+                                           @"|O|  |O|",
+                                           @" \|__|/ " };
 
-            public static string Open = @"        " + "\n" +
-                                        @"  ____  " + "\n" +
-                                        @" /    \ " + "\n" +
-                                        @"||    ||" + "\n" +
-                                        @" \____/ ";
+            public static string[] Open = new string[config.Height]
+                                       {@"        ",
+                                        @"  ____  ",
+                                        @" /    \ ",
+                                        @"||    ||",
+                                        @" \____/ " };
         }
     }
 }

@@ -42,7 +42,7 @@ namespace Robot
             LinkSquares();
         }
 
-        private void LinkSquares()
+        public void LinkSquares()
         {
             for (int x = 0; x < Width; x++)
             {

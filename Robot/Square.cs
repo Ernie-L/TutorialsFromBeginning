@@ -38,6 +38,7 @@ namespace Robot
                 throw new Exception("Already a player in the square.");
 
             Player = player;
+            Draw();
         }
 
         public void LeaveSquare(Player player)
@@ -46,26 +47,33 @@ namespace Robot
                 throw new Exception("Player can't leave the square bucause they aren't in the square.");
 
             Player = null;
+            Draw();
         }
 
         public void Draw()
         {
+            string[] display = null;
+
             // TODO: Draw the player
+            if (Player != null)
+                display = Player.Display;
+            else
+                display = this.Display;
 
             int startingX = X * Tile.config.Width;
             int startingY = Y * Tile.config.Height;
 
-            if (Display.Length != Tile.config.Height)
+            if (display.Length != Tile.config.Height)
                 throw new Exception($"Title must be {Tile.config.Height} high.");
 
             for (int y=0; y<Tile.config.Height; y++)
             {
-                if (Display[y].Length < Tile.config.Width)
+                if (display[y].Length < Tile.config.Width)
                     throw new Exception($"Tile must be at least 5 {Tile.config.Width} wide.");
 
                 for (int x=0; x<Tile.config.Width; x++)
                 {
-                    Screen.WriteAt(Display[y][x], startingX + x , startingY + y);
+                    Screen.WriteAt(display[y][x], startingX + x , startingY + y);
                 }
             }
 
@@ -104,4 +112,14 @@ namespace Robot
 
         public WaterSquare(int x, int y) : base(x, y) { }
     }
+
+    public class DoorSquare : Square
+    {
+        public override string[] Display { get { return Tile.Door.Closed; } }
+        public override string Name { get { return "Door"; } }
+        public override bool Passable { get { return false; } }
+
+        public DoorSquare(int x, int y) : base(x, y) { }
+    }
+
 }
