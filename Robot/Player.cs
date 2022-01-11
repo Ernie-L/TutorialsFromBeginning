@@ -4,12 +4,24 @@ using System.Text;
 
 namespace Robot
 {
+    /// <summary>
+    /// Player on the map
+    /// </summary>
     public class Player
     {
+        /// <summary>
+        /// The Tile the player will appear as on the screen.
+        /// </summary>
         public Tile Tile { get; private set; }
 
+        /// <summary>
+        /// Direction the player is facing on the map.
+        /// </summary>
         public Direction Direction { get; private set; }
 
+        /// <summary>
+        /// Square the player current occupies.
+        /// </summary>
         public Square CurrentSquare { get; private set; }
 
         public Player(Square square)
@@ -34,11 +46,18 @@ namespace Robot
             }
         }
 
+        /// <summary>
+        /// Move the player in the direction they are facing one square.
+        /// </summary>
         public void MoveForward()
         {
             Move(this.Direction);
         }
 
+        /// <summary>
+        /// Turn the player right.
+        /// </summary>
+        /// <exception cref="Exception"></exception>
         public void Turn()
         {
             switch (this.Direction)
