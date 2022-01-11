@@ -64,23 +64,12 @@ namespace Robot
             {
                 for (int y = 0; y < Height; y++)
                 {
-                    Square square = Squares[x, y];
-                    square.Draw();
-
-                    //char display;
-                    //Square square = Squares[x, y];
-
-                    //if (square.Player != null)
-                    //    display = square.Player.Display;
-                    //else
-                    //    display = square.Display;
-
-                    //Screen.WriteAt(display, x, y);
+                    Squares[x, y].Draw();
                 }
             }
 
             // have the next output print under the map.
-            Screen.SetCursorPosition(0, (Height * Tile.config.Height) + 2 );
+            Screen.SetCursorPosition(0, (Height * RobotTileSet.config.Height) + 2 );
         }
     }
 }

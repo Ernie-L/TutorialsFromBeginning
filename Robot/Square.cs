@@ -4,7 +4,7 @@ namespace Robot
 {
     public abstract class Square
     {
-        public virtual string[] Display { get; }
+        public virtual Tile Tile { get; }
         public virtual string Name { get; }
         public virtual bool Passable { get; }
 
@@ -52,28 +52,31 @@ namespace Robot
 
         public void Draw()
         {
-            string[] display = null;
+            Tile tile = null;
 
             // TODO: Draw the player
             if (Player != null)
-                display = Player.Display;
+                tile = Player.Tile;
             else
-                display = this.Display;
+                tile = this.Tile;
 
-            int startingX = X * Tile.config.Width;
-            int startingY = Y * Tile.config.Height;
+            Console.BackgroundColor = tile.BackgroundColor;
+            Console.ForegroundColor = tile.ForegroundColor;
 
-            if (display.Length != Tile.config.Height)
-                throw new Exception($"Title must be {Tile.config.Height} high.");
+            int startingX = X * RobotTileSet.config.Width;
+            int startingY = Y * RobotTileSet.config.Height;
 
-            for (int y=0; y<Tile.config.Height; y++)
+            if (tile.Display.Length != RobotTileSet.config.Height)
+                throw new Exception($"Title must be {RobotTileSet.config.Height} high.");
+
+            for (int y=0; y<RobotTileSet.config.Height; y++)
             {
-                if (display[y].Length < Tile.config.Width)
-                    throw new Exception($"Tile must be at least 5 {Tile.config.Width} wide.");
+                if (tile.Display[y].Length < RobotTileSet.config.Width)
+                    throw new Exception($"Tile must be at least 5 {RobotTileSet.config.Width} wide.");
 
-                for (int x=0; x<Tile.config.Width; x++)
+                for (int x=0; x<RobotTileSet.config.Width; x++)
                 {
-                    Screen.WriteAt(display[y][x], startingX + x , startingY + y);
+                    Screen.WriteAt(tile.Display[y][x], startingX + x , startingY + y);
                 }
             }
 
@@ -97,7 +100,7 @@ namespace Robot
 
     public class LandSquare : Square
     {
-        public override string[] Display { get { return Tile.Grass; } }
+        public override Tile Tile { get { return RobotTileSet.Grass; } }
         public override string Name { get { return "Land"; } }
         public override bool Passable { get { return true; } }
 
@@ -106,7 +109,7 @@ namespace Robot
 
     public class WaterSquare : Square
     {
-        public override string[] Display { get { return Tile.Water; } }
+        public override Tile Tile { get { return RobotTileSet.Water; } }
         public override string Name { get { return "Water"; } }
         public override bool Passable { get { return false; } }
 
@@ -115,7 +118,7 @@ namespace Robot
 
     public class DoorSquare : Square
     {
-        public override string[] Display { get { return Tile.Door.Closed; } }
+        public override Tile Tile { get { return RobotTileSet.Door.Closed; } }
         public override string Name { get { return "Door"; } }
         public override bool Passable { get { return false; } }
 
