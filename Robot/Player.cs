@@ -17,7 +17,7 @@ namespace Robot
         /// <summary>
         /// Direction the player is facing on the map.
         /// </summary>
-        public Direction Direction { get; private set; }
+        private Direction Direction { get; set; }
 
         /// <summary>
         /// Square the player current occupies.
@@ -37,12 +37,18 @@ namespace Robot
         {
             Square destination = CurrentSquare.Neighbor(direction);
 
-            if (destination != null && destination.Passable)
+            if (destination != null)
             {
-                CurrentSquare.LeaveSquare(this);
-               
-                CurrentSquare = destination;
-                CurrentSquare.EnterSquare(this);
+                if (destination.Name == "Door")
+                    Screen.Print("You found the door!");
+
+                if (destination.Passable)
+                {
+                    CurrentSquare.LeaveSquare(this);
+
+                    CurrentSquare = destination;
+                    CurrentSquare.EnterSquare(this);
+                }
             }
         }
 
@@ -58,7 +64,7 @@ namespace Robot
         /// Turn the player right.
         /// </summary>
         /// <exception cref="Exception"></exception>
-        public void Turn()
+        public void TurnRight()
         {
             switch (this.Direction)
             {

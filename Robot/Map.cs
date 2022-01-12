@@ -24,22 +24,19 @@ namespace Robot
             }
 
             //// add some sea
-            for (int x = 4; x < Width; x++)
+            for (int x = 0; x < Width - 2; x++)
             {
-                for (int y = 3; y < Height; y++)
+                for (int y = 2; y < Height -2; y++)
                 {
                     Squares[x, y] = new WaterSquare(x, y);
                 }
             }
-            //for (int x = 5; x < Width; x++)
-            //{
-            //    for (int y = 2; y < Height; y++)
-            //    {
-            //        Squares[x, y] = new WaterSquare(x, y);
-            //    }
-            //}
+
+            Squares[0, 4] = new DoorSquare(0, 4);
 
             LinkSquares();
+
+            Draw();
         }
 
         public void LinkSquares()

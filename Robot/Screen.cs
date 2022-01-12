@@ -80,5 +80,10 @@ namespace Robot
         {
             Console.SetCursorPosition(x, y);
         }
+
+        public static void Print(string s)
+        {
+            Console.WriteLine(s);
+        }
     }
 }
