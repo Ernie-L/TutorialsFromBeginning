@@ -1,7 +1,7 @@
-﻿using Robot;
+﻿using Game;
 
-var m = new Map();
-var p = new Player(m.Squares[1,1]);
+Map map = new Map();
+Robot robot = new Robot(map.Squares[1,1]);
 
 //// TODO: Move the Robot to the door
 RobotMover mover = new RobotMover();
@@ -10,5 +10,5 @@ RobotMover mover = new RobotMover();
 
 
 //// After RobotMover is done, control the robot manually.
-Keyboard.PlayLoop(p);
+Keyboard.PlayLoop(robot);
 

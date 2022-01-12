@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Robot
+namespace Game
 {
     public abstract class Square
     {
@@ -8,9 +8,9 @@ namespace Robot
         public virtual string Name { get; }
         public virtual bool Passable { get; }
 
-        private Player _player;
+        private Robot _player;
 
-        public Player Player
+        public Robot Player
         {
             get { return _player; }
             set { _player = value; Draw(); }
@@ -30,7 +30,7 @@ namespace Robot
             Y = y;
         }
 
-        public void EnterSquare(Player player)
+        public void EnterSquare(Robot player)
         {
             if (!Passable)
                 throw new Exception("Can't move there!");
@@ -41,7 +41,7 @@ namespace Robot
             Draw();
         }
 
-        public void LeaveSquare(Player player)
+        public void LeaveSquare(Robot player)
         {
             if (Player != player)
                 throw new Exception("Player can't leave the square bucause they aren't in the square.");

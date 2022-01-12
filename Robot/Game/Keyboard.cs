@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Robot
+namespace Game
 {
     internal class Keyboard
     {
-        public static void PlayLoop(Player p)
+        public static void PlayLoop(Robot p)
         {
             bool play = true;
 

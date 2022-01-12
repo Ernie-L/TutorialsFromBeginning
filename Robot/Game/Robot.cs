@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Robot
+namespace Game
 {
     /// <summary>
     /// Player on the map
     /// </summary>
-    public class Player
+    public class Robot
     {
         /// <summary>
         /// The Tile the player will appear as on the screen.
@@ -24,7 +24,7 @@ namespace Robot
         /// </summary>
         public Square CurrentSquare { get; private set; }
 
-        public Player(Square square)
+        public Robot(Square square)
         {
             Tile = RobotTileSet.Robot.Right;
             Direction = Direction.Right;
