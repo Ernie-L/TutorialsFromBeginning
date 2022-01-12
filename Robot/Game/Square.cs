@@ -1,16 +1,16 @@
 ﻿using System;
 
-namespace Explorer
+namespace Game
 {
     public abstract class Square
     {
-        public virtual char Display { get; }
+        public virtual Tile Tile { get; }
         public virtual string Name { get; }
         public virtual bool Passable { get; }
 
-        private Player _player;
+        private Robot _player;
 
-        public Player Player
+        public Robot Player
         {
             get { return _player; }
             set { _player = value; Draw(); }
@@ -30,7 +30,7 @@ namespace Explorer
             Y = y;
         }
 
-        public void EnterSquare(Player player)
+        public void EnterSquare(Robot player)
         {
             if (!Passable)
                 throw new Exception("Can't move there!");
@@ -38,26 +38,49 @@ namespace Explorer
                 throw new Exception("Already a player in the square.");
 
             Player = player;
+            Draw();
         }
 
-        public void LeaveSquare(Player player)
+        public void LeaveSquare(Robot player)
         {
             if (Player != player)
                 throw new Exception("Player can't leave the square bucause they aren't in the square.");
 
             Player = null;
+            Draw();
         }
 
         public void Draw()
         {
-            char display;
+            Tile tile = null;
 
+            // TODO: Draw the player
             if (Player != null)
-                display = Player.Display;
+                tile = Player.Tile;
             else
-                display = Display;
+                tile = this.Tile;
 
-            Screen.WriteAt(display, X, Y);
+            Console.BackgroundColor = tile.BackgroundColor;
+            Console.ForegroundColor = tile.ForegroundColor;
+
+            int startingX = X * RobotTileSet.config.Width;
+            int startingY = Y * RobotTileSet.config.Height;
+
+            if (tile.Display.Length != RobotTileSet.config.Height)
+                throw new Exception($"Title must be {RobotTileSet.config.Height} high.");
+
+            for (int y=0; y<RobotTileSet.config.Height; y++)
+            {
+                if (tile.Display[y].Length < RobotTileSet.config.Width)
+                    throw new Exception($"Tile must be at least 5 {RobotTileSet.config.Width} wide.");
+
+                for (int x=0; x<RobotTileSet.config.Width; x++)
+                {
+                    Screen.WriteAt(tile.Display[y][x], startingX + x , startingY + y);
+                }
+            }
+
+            //Screen.SetCursorPosition(0, Tile.config.Height + 2);
         }
 
         public virtual Square Neighbor(Direction direction)
@@ -77,7 +100,7 @@ namespace Explorer
 
     public class LandSquare : Square
     {
-        public override char Display { get { return 'L'; } }
+        public override Tile Tile { get { return RobotTileSet.Grass; } }
         public override string Name { get { return "Land"; } }
         public override bool Passable { get { return true; } }
 
@@ -86,10 +109,20 @@ namespace Explorer
 
     public class WaterSquare : Square
     {
-        public override char Display { get { return 'W'; } }
+        public override Tile Tile { get { return RobotTileSet.Water; } }
         public override string Name { get { return "Water"; } }
         public override bool Passable { get { return false; } }
 
         public WaterSquare(int x, int y) : base(x, y) { }
     }
+
+    public class DoorSquare : Square
+    {
+        public override Tile Tile { get { return RobotTileSet.Door.Closed; } }
+        public override string Name { get { return "Door"; } }
+        public override bool Passable { get { return false; } }
+
+        public DoorSquare(int x, int y) : base(x, y) { }
+    }
+
 }
