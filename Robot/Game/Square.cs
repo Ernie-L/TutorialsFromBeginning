@@ -30,15 +30,16 @@ namespace Game
             Y = y;
         }
 
-        public void EnterSquare(Robot player)
+        public bool EnterSquare(Robot player)
         {
             if (!Passable)
-                throw new Exception("Can't move there!");
+                return false;
             if (Player != null)
-                throw new Exception("Already a player in the square.");
+                return false;
 
             Player = player;
             Draw();
+            return true;
         }
 
         public void LeaveSquare(Robot player)
@@ -60,6 +61,9 @@ namespace Game
             else
                 tile = this.Tile;
 
+            ConsoleColor originalBackground = Console.BackgroundColor;
+            ConsoleColor originalForeground = Console.ForegroundColor;
+
             Console.BackgroundColor = tile.BackgroundColor;
             Console.ForegroundColor = tile.ForegroundColor;
 
@@ -79,6 +83,9 @@ namespace Game
                     Screen.WriteAt(tile.Display[y][x], startingX + x , startingY + y);
                 }
             }
+
+            Console.BackgroundColor = originalBackground;
+            Console.ForegroundColor = originalForeground;
 
             //Screen.SetCursorPosition(0, Tile.config.Height + 2);
         }

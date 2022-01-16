@@ -8,7 +8,7 @@ namespace Game
 {
     internal class Keyboard
     {
-        public static void PlayLoop(Robot p)
+        public static void PlayLoop(Robot r1, Robot r2 = null)
         {
             bool play = true;
 
@@ -17,7 +17,7 @@ namespace Game
             while (play)
             {
                 char key = Screen.GetKeyPress(
-                    new char[] { 'W', 'A', 'S', 'D', 'E' });
+                    new char[] { 'W', 'A', 'S', 'D', 'E', 'I', 'L', 'K', 'J' });
 
                 char keyUpper = char.ToUpper(key);
 
@@ -27,11 +27,11 @@ namespace Game
                 }
                 else if ('W' == keyUpper)
                 {
-                    p.MoveForward();
+                    r1.MoveForward();
                 }
                 else if ('A' == keyUpper)
                 {
-                    p.TurnRight();
+                    r1.TurnRight();
                 }
                 else if ('S' == keyUpper)
                 {
@@ -39,7 +39,27 @@ namespace Game
                 }
                 else if ('D' == keyUpper)
                 {
-                    p.TurnRight();
+                    r1.TurnRight();
+                }
+
+                if (r2 is not null)
+                {
+                    if ('I' == keyUpper)
+                    {
+                        r2.MoveForward();
+                    }
+                    else if ('L' == keyUpper)
+                    {
+                        r2.TurnRight();
+                    }
+                    else if ('K' == keyUpper)
+                    {
+                        //player.Move(Direction.Down);
+                    }
+                    else if ('J' == keyUpper)
+                    {
+                        r2.TurnRight();
+                    }
                 }
             }
         }

@@ -42,12 +42,13 @@ namespace Game
                 if (destination.Name == "Door")
                     Screen.Print("You found the door!");
 
-                if (destination.Passable)
+                if (destination.Player != null)
+                    Screen.Print("You found a friend!");
+
+                if (destination.EnterSquare(this))
                 {
                     CurrentSquare.LeaveSquare(this);
-
                     CurrentSquare = destination;
-                    CurrentSquare.EnterSquare(this);
                 }
             }
         }
