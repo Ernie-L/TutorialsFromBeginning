@@ -26,7 +26,7 @@ namespace Game
 
         public Robot(Square square)
         {
-            Tile = RobotTileSet.Robot.Right;
+            Tile = RobotTileSet.Right;
             Direction = Direction.Right;
 
             CurrentSquare = square;
@@ -71,19 +71,19 @@ namespace Game
             {
                 case Direction.Right: 
                     this.Direction = Direction.Down;
-                    this.Tile = RobotTileSet.Robot.Down;
+                    this.Tile = RobotTileSet.Down;
                     break;
                 case Direction.Down: 
                     this.Direction = Direction.Left;
-                    this.Tile = RobotTileSet.Robot.Left;
+                    this.Tile = RobotTileSet.Left;
                     break;
                 case Direction.Left: 
                     this.Direction = Direction.Up;
-                    this.Tile = RobotTileSet.Robot.Up;
+                    this.Tile = RobotTileSet.Up;
                     break;
                 case Direction.Up: 
                     this.Direction = Direction.Right;
-                    this.Tile = RobotTileSet.Robot.Right;
+                    this.Tile = RobotTileSet.Right;
                     break;
                 default: throw new Exception("Unknown direction.");
             }

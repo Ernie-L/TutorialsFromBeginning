@@ -1,6 +1,6 @@
 ﻿using Game;
 
-Map map = new Map();
+Map map = new FieldMap();
 Robot robot = new Robot(map.Squares[1,1]);
 
 Robot robot2 = new Robot(map.Squares[0,0]);

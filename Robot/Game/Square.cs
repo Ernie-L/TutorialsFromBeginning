@@ -55,7 +55,6 @@ namespace Game
         {
             Tile tile = null;
 
-            // TODO: Draw the player
             if (Player != null)
                 tile = Player.Tile;
             else
@@ -67,18 +66,18 @@ namespace Game
             Console.BackgroundColor = tile.BackgroundColor;
             Console.ForegroundColor = tile.ForegroundColor;
 
-            int startingX = X * RobotTileSet.config.Width;
-            int startingY = Y * RobotTileSet.config.Height;
+            int startingX = X * Config.Tile.Width;
+            int startingY = Y * Config.Tile.Height;
 
-            if (tile.Display.Length != RobotTileSet.config.Height)
-                throw new Exception($"Title must be {RobotTileSet.config.Height} high.");
+            if (tile.Display.Length != Config.Tile.Height)
+                throw new Exception($"Title must be {Config.Tile.Height} high.");
 
-            for (int y=0; y<RobotTileSet.config.Height; y++)
+            for (int y=0; y< Config.Tile.Height; y++)
             {
-                if (tile.Display[y].Length < RobotTileSet.config.Width)
-                    throw new Exception($"Tile must be at least 5 {RobotTileSet.config.Width} wide.");
+                if (tile.Display[y].Length < Config.Tile.Width)
+                    throw new Exception($"Tile must be at least 5 {Config.Tile.Width} wide.");
 
-                for (int x=0; x<RobotTileSet.config.Width; x++)
+                for (int x=0; x< Config.Tile.Width; x++)
                 {
                     Screen.WriteAt(tile.Display[y][x], startingX + x , startingY + y);
                 }
@@ -90,6 +89,12 @@ namespace Game
             //Screen.SetCursorPosition(0, Tile.config.Height + 2);
         }
 
+        /// <summary>
+        /// Returns the neighboring square on the map from the given direction.
+        /// </summary>
+        /// <param name="direction"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public virtual Square Neighbor(Direction direction)
         {
             Square neighbor;
@@ -105,18 +110,18 @@ namespace Game
         }
     }
 
-    public class LandSquare : Square
+    public class GrassSquare : Square
     {
-        public override Tile Tile { get { return RobotTileSet.Grass; } }
+        public override Tile Tile { get { return FieldTileSet.Grass; } }
         public override string Name { get { return "Land"; } }
         public override bool Passable { get { return true; } }
 
-        public LandSquare(int x, int y) : base(x, y) { }
+        public GrassSquare(int x, int y) : base(x, y) { }
     }
 
     public class WaterSquare : Square
     {
-        public override Tile Tile { get { return RobotTileSet.Water; } }
+        public override Tile Tile { get { return FieldTileSet.Water; } }
         public override string Name { get { return "Water"; } }
         public override bool Passable { get { return false; } }
 
@@ -125,7 +130,7 @@ namespace Game
 
     public class DoorSquare : Square
     {
-        public override Tile Tile { get { return RobotTileSet.Door.Closed; } }
+        public override Tile Tile { get { return DoorTileSet.Closed; } }
         public override string Name { get { return "Door"; } }
         public override bool Passable { get { return false; } }
 
