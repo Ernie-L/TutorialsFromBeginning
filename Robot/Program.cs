@@ -3,6 +3,7 @@ global using Maps;
 global using Robot;
 global using Tiles;
 global using Squares;
+global using Robot.Squares;
 
 GameEvents gameEvents = GameEvents.GetGameEvents();
 Map fieldMap = new FieldMap();
@@ -37,8 +38,8 @@ while (!Keyboard.PlayLoop(bob))
 
         if (gameEvent.Name == "LEAVE_STARTER_MAP")
         {
-            bob.MoveTo(treeMap.Squares[1, 1]);
-            treeMap.Draw();
+            bob.MoveTo(fieldMap.Squares[13, 4]);
+            fieldMap.Draw();
         }
     }
 }

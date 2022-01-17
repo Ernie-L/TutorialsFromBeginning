@@ -48,5 +48,17 @@ namespace Robot
                                             @"........" },
                 ConsoleColor.Gray,
                 ConsoleColor.Black);
+
+        public static Tile BrickFloor { get; } =
+     new Tile(
+         new string[Config.Tile.Height] { @"______|_",
+                                            @"_____|__",
+                                            @"___|____",
+                                            @"_____|__",
+                                            @"__|_____" },
+         ConsoleColor.DarkBlue,
+         ConsoleColor.White);
+    
     }
+    
 }

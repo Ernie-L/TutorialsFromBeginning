@@ -1,13 +1,9 @@
-﻿using Game;
-using Squares;
-
-
-
-namespace Maps
+﻿
+namespace Robot.TStuf
 {
-    public class FieldMap : Map
+    public class HouseMap : Map
     {
-        public FieldMap() : base()
+        public HouseMap() : base()
         {
             // cover all land
             for (int x = 0; x < Width; x++)
@@ -30,7 +26,7 @@ namespace Maps
             {
                 for (int y = 4; y < Height - 1; y++)
                 {
-                    Squares[x, y] = new Woodfloor(x, y);
+                    Squares[x, y] = new BrickFloorSquare(x, y);
                 }
             }
             Squares[0, 4] = new DoorSquare(0, 4, "LEAVE_FIELD");
@@ -39,3 +35,9 @@ namespace Maps
         }
     }
 }    
+
+
+
+
+    
+
