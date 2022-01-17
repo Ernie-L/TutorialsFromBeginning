@@ -4,11 +4,12 @@ global using Robot;
 global using Tiles;
 global using Squares;
 global using Robot.Squares;
+global using Robot.TStuf;
 
 GameEvents gameEvents = GameEvents.GetGameEvents();
 Map fieldMap = new FieldMap();
 Map treeMap = new TreeFieldMap();
-Map startMap = new StarterMap();
+Map startMap = new HouseMap();
 
 //Player robot = new RobotPlayer(startMap.Squares[1, 1]);
 //startMap.Draw();
