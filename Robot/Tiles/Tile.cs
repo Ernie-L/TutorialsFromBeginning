@@ -1,4 +1,4 @@
-﻿namespace Game
+﻿namespace Tiles
 {
     public class Tile
     {

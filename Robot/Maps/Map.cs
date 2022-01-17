@@ -1,42 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Game;
+using Squares;
 
-namespace Game
+namespace Maps
 {
-    public class Map
+    public abstract class Map
     {
-        public Square[,] Squares { get; }
-        public const int Width = 10;
-        public const int Height = 5;
+        public Square[,] Squares { get; protected set; }
+        public const int Width = 14;
+        public const int Height = 7;
 
         public Map()
         {
             Squares = new Square[Width, Height];
-
-            // cover all land
-            for (int x = 0; x < Width; x++)
-            {
-                for (int y = 0; y < Height; y++)
-                {
-                    Squares[x, y] = new LandSquare(x, y);
-                }
-            }
-
-            //// add some sea
-            for (int x = 0; x < Width - 2; x++)
-            {
-                for (int y = 2; y < Height -2; y++)
-                {
-                    Squares[x, y] = new WaterSquare(x, y);
-                }
-            }
-
-            Squares[0, 4] = new DoorSquare(0, 4);
-
-            LinkSquares();
-
-            Draw();
         }
 
         public void LinkSquares()
@@ -66,7 +41,7 @@ namespace Game
             }
 
             // have the next output print under the map.
-            Screen.SetCursorPosition(0, (Height * RobotTileSet.config.Height) + 2 );
+            Screen.SetCursorPosition(0, (Height * Config.Tile.Height) + 2 );
         }
     }
 }

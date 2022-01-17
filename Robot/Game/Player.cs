@@ -1,36 +1,57 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Squares;
+using Tiles;
 
 namespace Game
 {
     /// <summary>
     /// Player on the map
     /// </summary>
-    public class Robot
+    public abstract class Player
     {
         /// <summary>
         /// The Tile the player will appear as on the screen.
         /// </summary>
-        public Tile Tile { get; private set; }
+        public Tile Tile { get; protected set; }
+
+        protected abstract Tile TileUp { get; }
+        protected abstract Tile TileDown { get; }
+        protected abstract Tile TileLeft { get; }
+        protected abstract Tile TileRight { get; }
 
         /// <summary>
         /// Direction the player is facing on the map.
         /// </summary>
-        private Direction Direction { get; set; }
+        protected Direction Direction { get; set; }
 
         /// <summary>
         /// Square the player current occupies.
         /// </summary>
         public Square CurrentSquare { get; private set; }
 
-        public Robot(Square square)
+        public Player(Square startSquare, Tile startTile)
         {
-            Tile = RobotTileSet.Robot.Right;
-            Direction = Direction.Right;
+            Tile = startTile;
+            bool entered = MoveTo(startSquare);
 
-            CurrentSquare = square;
-            CurrentSquare.EnterSquare(this);
+            if (!entered)
+                throw new Exception("Player unable to enter their start square. Is it Passable and empty?");
+        }
+
+        public bool MoveTo(Square destination)
+        {
+            if (destination.EnterSquare(this))
+            {
+                if (CurrentSquare != null)
+                {
+                    CurrentSquare.LeaveSquare(this);
+                }
+
+                CurrentSquare = destination;
+
+                return true;
+            }
+
+            return false;
         }
 
         private void Move(Direction direction)
@@ -42,13 +63,10 @@ namespace Game
                 if (destination.Name == "Door")
                     Screen.Print("You found the door!");
 
-                if (destination.Passable)
-                {
-                    CurrentSquare.LeaveSquare(this);
+                if (destination.Player != null)
+                    Screen.Print("You found a friend!");
 
-                    CurrentSquare = destination;
-                    CurrentSquare.EnterSquare(this);
-                }
+                MoveTo(destination);
             }
         }
 
@@ -70,19 +88,19 @@ namespace Game
             {
                 case Direction.Right: 
                     this.Direction = Direction.Down;
-                    this.Tile = RobotTileSet.Robot.Down;
+                    this.Tile = TileDown;
                     break;
                 case Direction.Down: 
                     this.Direction = Direction.Left;
-                    this.Tile = RobotTileSet.Robot.Left;
+                    this.Tile = TileLeft;
                     break;
                 case Direction.Left: 
                     this.Direction = Direction.Up;
-                    this.Tile = RobotTileSet.Robot.Up;
+                    this.Tile = TileUp;
                     break;
                 case Direction.Up: 
                     this.Direction = Direction.Right;
-                    this.Tile = RobotTileSet.Robot.Right;
+                    this.Tile = TileRight;
                     break;
                 default: throw new Exception("Unknown direction.");
             }
