@@ -31,18 +31,27 @@ namespace Game
         public Player(Square startSquare, Tile startTile)
         {
             Tile = startTile;
-            MoveTo(startSquare);
-        }
-
-        public bool MoveTo(Square square)
-        {
-            CurrentSquare = square;
-            bool entered = CurrentSquare.EnterSquare(this);
+            bool entered = MoveTo(startSquare);
 
             if (!entered)
                 throw new Exception("Player unable to enter their start square. Is it Passable and empty?");
+        }
 
-            return entered;
+        public bool MoveTo(Square destination)
+        {
+            if (destination.EnterSquare(this))
+            {
+                if (CurrentSquare != null)
+                {
+                    CurrentSquare.LeaveSquare(this);
+                }
+
+                CurrentSquare = destination;
+
+                return true;
+            }
+
+            return false;
         }
 
         private void Move(Direction direction)
@@ -57,11 +66,7 @@ namespace Game
                 if (destination.Player != null)
                     Screen.Print("You found a friend!");
 
-                if (destination.EnterSquare(this))
-                {
-                    CurrentSquare.LeaveSquare(this);
-                    CurrentSquare = destination;
-                }
+                MoveTo(destination);
             }
         }
 
