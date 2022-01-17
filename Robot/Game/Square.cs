@@ -8,9 +8,9 @@ namespace Game
         public virtual string Name { get; }
         public virtual bool Passable { get; }
 
-        private Robot _player;
+        private Player _player;
 
-        public Robot Player
+        public Player Player
         {
             get { return _player; }
             set { _player = value; Draw(); }
@@ -30,7 +30,7 @@ namespace Game
             Y = y;
         }
 
-        public bool EnterSquare(Robot player)
+        public bool EnterSquare(Player player)
         {
             if (!Passable)
                 return false;
@@ -42,7 +42,7 @@ namespace Game
             return true;
         }
 
-        public void LeaveSquare(Robot player)
+        public void LeaveSquare(Player player)
         {
             if (Player != player)
                 throw new Exception("Player can't leave the square bucause they aren't in the square.");

@@ -8,7 +8,7 @@ namespace Game
 {
     internal class Keyboard
     {
-        public static void PlayLoop(Robot r1, Robot r2 = null)
+        public static void PlayLoop(Player r1, Player r2 = null)
         {
             bool play = true;
 
@@ -21,44 +21,23 @@ namespace Game
 
                 char keyUpper = char.ToUpper(key);
 
-                if ('E' == keyUpper)
+                switch (keyUpper)
                 {
-                    play = false;
-                }
-                else if ('W' == keyUpper)
-                {
-                    r1.MoveForward();
-                }
-                else if ('A' == keyUpper)
-                {
-                    r1.TurnRight();
-                }
-                else if ('S' == keyUpper)
-                {
-                    //player.Move(Direction.Down);
-                }
-                else if ('D' == keyUpper)
-                {
-                    r1.TurnRight();
+                    case 'E': play = false; break;
+                    case 'W': r1.MoveForward(); break;
+                    case 'A': r1.TurnRight(); break;
+                    //case 'S': r1.MoveForward(); break;
+                    case 'D': r1.TurnRight(); break;
                 }
 
                 if (r2 is not null)
                 {
-                    if ('I' == keyUpper)
+                    switch (keyUpper)
                     {
-                        r2.MoveForward();
-                    }
-                    else if ('L' == keyUpper)
-                    {
-                        r2.TurnRight();
-                    }
-                    else if ('K' == keyUpper)
-                    {
-                        //player.Move(Direction.Down);
-                    }
-                    else if ('J' == keyUpper)
-                    {
-                        r2.TurnRight();
+                        case 'I': r2.MoveForward(); break;
+                        case 'L': r2.TurnRight(); break;
+                        //case 'K': r1.TurnRight(); break;
+                        case 'J': r2.TurnRight(); break;
                     }
                 }
             }

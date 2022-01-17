@@ -7,29 +7,33 @@ namespace Game
     /// <summary>
     /// Player on the map
     /// </summary>
-    public class Robot
+    public abstract class Player
     {
         /// <summary>
         /// The Tile the player will appear as on the screen.
         /// </summary>
-        public Tile Tile { get; private set; }
+        public Tile Tile { get; protected set; }
+
+        protected abstract Tile TileUp { get; }
+        protected abstract Tile TileDown { get; }
+        protected abstract Tile TileLeft { get; }
+        protected abstract Tile TileRight { get; }
 
         /// <summary>
         /// Direction the player is facing on the map.
         /// </summary>
-        private Direction Direction { get; set; }
+        protected Direction Direction { get; set; }
 
         /// <summary>
         /// Square the player current occupies.
         /// </summary>
         public Square CurrentSquare { get; private set; }
 
-        public Robot(Square square)
+        public Player(Square startSquare, Tile startTile)
         {
-            Tile = RobotTileSet.Right;
-            Direction = Direction.Right;
+            Tile = startTile;
 
-            CurrentSquare = square;
+            CurrentSquare = startSquare;
             CurrentSquare.EnterSquare(this);
         }
 
@@ -71,19 +75,19 @@ namespace Game
             {
                 case Direction.Right: 
                     this.Direction = Direction.Down;
-                    this.Tile = RobotTileSet.Down;
+                    this.Tile = TileDown;
                     break;
                 case Direction.Down: 
                     this.Direction = Direction.Left;
-                    this.Tile = RobotTileSet.Left;
+                    this.Tile = TileLeft;
                     break;
                 case Direction.Left: 
                     this.Direction = Direction.Up;
-                    this.Tile = RobotTileSet.Up;
+                    this.Tile = TileUp;
                     break;
                 case Direction.Up: 
                     this.Direction = Direction.Right;
-                    this.Tile = RobotTileSet.Right;
+                    this.Tile = TileRight;
                     break;
                 default: throw new Exception("Unknown direction.");
             }
