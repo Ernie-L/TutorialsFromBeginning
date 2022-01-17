@@ -1,4 +1,6 @@
-﻿namespace Game
+﻿using Game;
+
+namespace Tiles
 {
     public static class FieldTileSet
     {

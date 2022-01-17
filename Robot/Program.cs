@@ -1,4 +1,5 @@
 ﻿using Game;
+using Maps;
 
 GameEvents gameEvents = GameEvents.GetGameEvents();
 Map fieldMap = new FieldMap();

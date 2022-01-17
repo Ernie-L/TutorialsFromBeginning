@@ -1,4 +1,7 @@
-﻿namespace Game
+﻿using Squares;
+using Tiles;
+
+namespace Game
 {
     public class RobotPlayer : Player
     {

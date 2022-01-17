@@ -1,4 +1,7 @@
-﻿namespace Game
+﻿using Squares;
+using Tiles;
+
+namespace Game
 {
     /// <summary>
     /// Player on the map
