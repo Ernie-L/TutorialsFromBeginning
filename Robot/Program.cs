@@ -9,7 +9,8 @@ global using Robot.TStuf;
 GameEvents gameEvents = GameEvents.GetGameEvents();
 Map fieldMap = new FieldMap();
 Map treeMap = new TreeFieldMap();
-Map startMap = new HouseMap();
+Map startMap = new StarterMap();
+Map housemap = new HouseMap();
 
 //Player robot = new RobotPlayer(startMap.Squares[1, 1]);
 //startMap.Draw();
@@ -25,11 +26,7 @@ while (!Keyboard.PlayLoop(bob))
     {
         GameEvent gameEvent = gameEvents.RemoveEvent();
 
-        if (gameEvent.Name == "LEAVE_FIELD")
-        {
-            bob.MoveTo(treeMap.Squares[1, 1]);
-            treeMap.Draw();
-        }
+        
 
         if (gameEvent.Name == "LEAVE_TREES")
         {
@@ -42,6 +39,14 @@ while (!Keyboard.PlayLoop(bob))
             bob.MoveTo(fieldMap.Squares[13, 4]);
             fieldMap.Draw();
         }
+        if (gameEvent.Name == "LEAVE_FIELD")
+        {
+            bob.MoveTo(housemap.Squares[1, 1]);
+            housemap.Draw();
+        }
+
+
+
     }
 }
 
