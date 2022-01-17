@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Game
+﻿namespace Game
 {
     /// <summary>
     /// Player on the map
@@ -32,9 +28,18 @@ namespace Game
         public Player(Square startSquare, Tile startTile)
         {
             Tile = startTile;
+            MoveTo(startSquare);
+        }
 
-            CurrentSquare = startSquare;
-            CurrentSquare.EnterSquare(this);
+        public bool MoveTo(Square square)
+        {
+            CurrentSquare = square;
+            bool entered = CurrentSquare.EnterSquare(this);
+
+            if (!entered)
+                throw new Exception("Player unable to enter their start square. Is it Passable and empty?");
+
+            return entered;
         }
 
         private void Move(Direction direction)

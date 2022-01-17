@@ -8,9 +8,11 @@ namespace Game
 {
     internal class Keyboard
     {
-        public static void PlayLoop(Player r1, Player r2 = null)
+        public static bool PlayLoop(Player r1, Player r2 = null)
         {
+            bool exit = false;
             bool play = true;
+            GameEvents events = GameEvents.GetGameEvents();
 
             Console.WriteLine("Where do you want to go? W,A,S,D, or E to exit");
 
@@ -23,7 +25,7 @@ namespace Game
 
                 switch (keyUpper)
                 {
-                    case 'E': play = false; break;
+                    case 'E': play = false; exit = true; break;
                     case 'W': r1.MoveForward(); break;
                     case 'A': r1.TurnRight(); break;
                     //case 'S': r1.MoveForward(); break;
@@ -40,7 +42,12 @@ namespace Game
                         case 'J': r2.TurnRight(); break;
                     }
                 }
+
+                if (!events.IsEmpty)
+                    play = false;
             }
+
+            return exit;
         }
     }
 }

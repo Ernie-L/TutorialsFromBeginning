@@ -21,5 +21,16 @@
                                                 @"~/~~/~~~" },
                 ConsoleColor.DarkCyan,
                 ConsoleColor.White);
+
+
+        public static Tile Tree { get; } =
+            new Tile(
+                new string[Config.Tile.Height] {@"   ()   ",
+                                                @"  ()()  ",
+                                                @" ()()() ",
+                                                @"   | |  ",
+                                                @"   | |  " },
+        ConsoleColor.DarkGreen,
+        ConsoleColor.White);
     }
 }

@@ -4,9 +4,9 @@ namespace Game
 {
     public abstract class Square
     {
-        public virtual Tile Tile { get; }
-        public virtual string Name { get; }
-        public virtual bool Passable { get; }
+        public abstract Tile Tile { get; }
+        public abstract string Name { get; }
+        public abstract bool Passable { get; }
 
         private Player _player;
 
@@ -30,7 +30,7 @@ namespace Game
             Y = y;
         }
 
-        public bool EnterSquare(Player player)
+        public virtual bool EnterSquare(Player player)
         {
             if (!Passable)
                 return false;
@@ -42,7 +42,7 @@ namespace Game
             return true;
         }
 
-        public void LeaveSquare(Player player)
+        public virtual void LeaveSquare(Player player)
         {
             if (Player != player)
                 throw new Exception("Player can't leave the square bucause they aren't in the square.");
@@ -51,7 +51,7 @@ namespace Game
             Draw();
         }
 
-        public void Draw()
+        public virtual void Draw()
         {
             Tile tile = null;
 
@@ -128,13 +128,43 @@ namespace Game
         public WaterSquare(int x, int y) : base(x, y) { }
     }
 
+    public class TreeSquare : Square
+    {
+        public override Tile Tile { get { return FieldTileSet.Tree; } }
+        public override string Name { get { return "Tree"; } }
+        public override bool Passable { get { return false; } }
+
+        public TreeSquare(int x, int y) : base(x, y) { }
+    }
+
     public class DoorSquare : Square
     {
         public override Tile Tile { get { return DoorTileSet.Closed; } }
         public override string Name { get { return "Door"; } }
-        public override bool Passable { get { return false; } }
+        public override bool Passable { get { return true; } }
 
-        public DoorSquare(int x, int y) : base(x, y) { }
+        private string EventName { get; }
+
+        public DoorSquare(int x, int y, string eventName) : base(x, y) 
+        {
+            EventName = eventName;
+        }
+
+        public override bool EnterSquare(Player player)
+        {
+            bool moved = base.EnterSquare(player);
+
+            if (moved)
+            {
+                GameEvents.GetGameEvents()
+                    .AddEvent(new GameEvent() { 
+                        Player = player, 
+                        Type = GameEvent.EventType.ENTERED_DOOR,
+                        Name = EventName});
+            }
+
+            return moved;
+        }
     }
 
 }
