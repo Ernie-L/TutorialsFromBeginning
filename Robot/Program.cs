@@ -44,7 +44,11 @@ while (!Keyboard.PlayLoop(bob))
             bob.MoveTo(housemap.Squares[1, 1]);
             housemap.Draw();
         }
-
+        if (gameEvent.Name == "LEAVE_HOUSE")
+        {
+            bob.MoveTo(treeMap.Squares[1, 1]);
+            treeMap.Draw();
+        }
 
 
     }
