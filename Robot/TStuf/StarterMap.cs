@@ -12,7 +12,7 @@ namespace Robot
             {
                 for (int y = 0; y < Height; y++)
                 {
-                    Squares[x, y] = new Woodfloor(x, y);
+                    Squares[x, y] = new WoodFloorSquare(x, y);
                 }
             }
             for (int x = 11; x < Width; x++)

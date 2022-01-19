@@ -10,7 +10,7 @@ GameEvents gameEvents = GameEvents.GetGameEvents();
 Map fieldMap = new FieldMap();
 Map treeMap = new TreeFieldMap();
 Map startMap = new StarterMap();
-Map housemap = new HouseMap();
+Map houseMap = new HouseMap();
 
 //Player robot = new RobotPlayer(startMap.Squares[1, 1]);
 //startMap.Draw();
@@ -25,9 +25,7 @@ while (!Keyboard.PlayLoop(bob))
     if (!gameEvents.IsEmpty)
     {
         GameEvent gameEvent = gameEvents.RemoveEvent();
-
-        
-
+      
         if (gameEvent.Name == "LEAVE_TREES")
         {
             bob.MoveTo(fieldMap.Squares[1, 1]);
@@ -41,16 +39,14 @@ while (!Keyboard.PlayLoop(bob))
         }
         if (gameEvent.Name == "LEAVE_FIELD")
         {
-            bob.MoveTo(housemap.Squares[1, 1]);
-            housemap.Draw();
+            bob.MoveTo(houseMap.Squares[1, 1]);
+            houseMap.Draw();
         }
         if (gameEvent.Name == "LEAVE_HOUSE")
         {
             bob.MoveTo(treeMap.Squares[1, 1]);
             treeMap.Draw();
         }
-
-
     }
 }
 

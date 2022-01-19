@@ -15,7 +15,7 @@ namespace Robot.TStuf
                 }
             }
 
-            Squares[5, 6] = new Table(5, 6);
+            Squares[5, 6] = new TableSquare(5, 6);
 
             for (int x = 7; x < Width - 6; x++)
             {
@@ -25,10 +25,10 @@ namespace Robot.TStuf
                 }
             }
             Squares[7, 3] = new BrickFloorSquare(7, 3);
-            Squares[10, 6] = new Table(10, 6);
-            Squares[10, 3] = new Table(10, 3);
-            Squares[10, 0] = new Table(10, 0);
-            Squares[5, 6] = new Table(5, 6);
+            Squares[10, 6] = new TableSquare(10, 6);
+            Squares[10, 3] = new TableSquare(10, 3);
+            Squares[10, 0] = new TableSquare(10, 0);
+            Squares[5, 6] = new TableSquare(5, 6);
 
 
 

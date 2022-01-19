@@ -18,9 +18,9 @@ namespace Squares
 
         public override bool EnterSquare(Player player)
         {
-            bool moved = base.EnterSquare(player);
+            bool entered = base.EnterSquare(player);
 
-            if (moved)
+            if (entered)
             {
                 GameEvents.GetGameEvents()
                     .AddEvent(new GameEvent() { 
@@ -29,7 +29,7 @@ namespace Squares
                         Name = EventName});
             }
 
-            return moved;
+            return entered;
         }
     }
 

@@ -30,7 +30,7 @@ namespace Maps
             {
                 for (int y = 4; y < Height - 1; y++)
                 {
-                    Squares[x, y] = new Woodfloor(x, y);
+                    Squares[x, y] = new WoodFloorSquare(x, y);
                 }
             }
             Squares[0, 4] = new DoorSquare(0, 4, "LEAVE_FIELD");
